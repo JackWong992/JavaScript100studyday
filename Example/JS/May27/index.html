@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tabs</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+    }
+    .tab-box {
+      margin: 20px auto;
+      width: 500px;
+    }
+    .tab-box ul {
+      display: flex;
+      position: relative;
+      top: 1px;
+    }
+    .tab-box ul li {
+      border:1px solid  #AAA;
+      line-height: 32px;
+      width: 33.333%;
+      text-align: center;
+      cursor: pointer;
+    }
+    .tab-box ul li.active {
+      font-weight: bold;
+      color: lightcoral;
+      border-bottom-color: #fff;
+    }
+
+    .tab-box div {
+      line-height: 140px;
+      text-align: center;
+      width: 100%;
+      display: none;
+      border: 1px solid #aaa;
+    }
+    .tab-box div.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="tab-box" id="tabBox">
+    <ul class="">
+      <li class="active">项目一</li>
+      <li>项目二</li>
+      <li>项目三</li>
+    </ul>
+    <div class="active">text1</div>
+    <div>text2</div>
+    <div>text3</div>
+  </div>
+</body>
+<script>
+  var tabBox = document.getElementById('tabBox')
+  var tabList = tabBox.getElementsByTagName('li')
+  var divList = tabBox.getElementsByTagName('div')
+
+  // for(vari i=0; i<tabList.length; i++){
+  //   tabList[i].onclick = function () {
+  //     changeTable(i)
+  //   }  
+  // }
+  // 不行代码：点击事件还没有开始，循环就已经结束了
+//自定义属性的方式:
+//
+for(var i =0; i<tabList.length; i++){
+  tabList[i]['index'] = i
+  tabList[i].onclick = function(){
+    changeTable(this.index)
+  }
+}
+
+  function changeTable(n) {
+    //清空所有的样式
+    for( var i=0; i<tabList.length; i++){
+      tabList[i].className = ''
+      divList[i].className = ''
+    }
+
+    //点击状态有样式
+    tabList[n].className = 'active'
+    divList[n].className = 'active'
+  }
+</script>
+</html>
+
+
